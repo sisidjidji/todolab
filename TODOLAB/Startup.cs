@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.Options;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,18 +16,19 @@ namespace TODOLAB
 {
     public class Startup
     {
-        public IConfiguration configuration {get;}
-        public Startup (IConfiguration configuration)
+        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration)
         {
-            this.configuration = configuration;      
-          }
-        
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddDbContext<ToDoDbContext>(options => {
-                options.useSqlServer(configuration.)
-                });
+                string connectionString = Configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connectionString);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
