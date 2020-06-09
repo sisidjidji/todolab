@@ -8,7 +8,7 @@ namespace TODOLAB.Data
 {
     public class UserToDoDbContext :DbContext
     {
-        public UserToDoDbContext(DbContextOptions options) : base(options)
+        public UserToDoDbContext(DbContextOptions <UserToDoDbContext> options) : base(options)
         {
 
         }
