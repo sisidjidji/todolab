@@ -8,7 +8,7 @@ using TODOLAB.Model.DTO;
 
 namespace TODOLAB.Repositories
 {
-    public class ToDoListRepository
+    public class ToDoListRepository : IToDoListRepository
     {
         private ToDoDbContext _context;
 

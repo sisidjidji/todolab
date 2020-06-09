@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TODOLAB.Data;
 using TODOLAB.Model;
+using TODOLAB.Repositories;
 
 namespace TODOLAB
 {
@@ -33,13 +34,17 @@ namespace TODOLAB
                
                 });
 
+            services.AddTransient<IToDoListRepository,ToDoListRepository>();
+
             services.AddDbContext<UserToDoDbContext>(options =>
             {
                 string connectionString = Configuration.GetConnectionString("UserConnection");
                 options.UseSqlServer(connectionString);
 
             });
-            }
+
+            
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
