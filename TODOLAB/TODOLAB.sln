@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODOLAB", "TODOLAB.csproj", "{14F89A84-47CD-4564-B478-9914B9EDDACD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14F89A84-47CD-4564-B478-9914B9EDDACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F89A84-47CD-4564-B478-9914B9EDDACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F89A84-47CD-4564-B478-9914B9EDDACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F89A84-47CD-4564-B478-9914B9EDDACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53DF5BA4-AE31-4368-8A7F-9429602AD014}
+	EndGlobalSection
+EndGlobal
