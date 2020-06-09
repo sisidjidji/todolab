@@ -8,6 +8,9 @@ namespace TODOLAB.Data
 {
     public class ToDoDbContext: DbContext
     {
-        public ToDo
+        public ToDoDbContext(DbContextOptions options) : base(options)
+        {
+
+        }
     }
 }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TODOLAB.Controller
+namespace TODOLAB.Controllers
 {
-    public class ToDoController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ToDoListController : Controller
     {
         public IActionResult Index()
         {
