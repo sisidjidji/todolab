@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TODOLAB.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserToDoController : Controller
     {
         public IActionResult Index()

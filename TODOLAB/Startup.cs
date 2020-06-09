@@ -35,7 +35,7 @@ namespace TODOLAB
 
             services.AddDbContext<UserToDoDbContext>(options =>
             {
-                string connectionString = Configuration.GetConnectionString("DefaultConnection");
+                string connectionString = Configuration.GetConnectionString("UserConnection");
                 options.UseSqlServer(connectionString);
 
             });
