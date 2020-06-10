@@ -66,9 +66,13 @@ namespace TODOLAB.Repositories
 
 
 
-        public Task<ToDoListDTO> SaveNewToDoList(ToDoList list)
+        public async Task<ToDoListDTO> SaveNewToDoList(ToDoList listToDo)
         {
-            throw new NotImplementedException();
+            _context.ToDoList.Add(listToDo);
+
+            await _context.SaveChangesAsync();
+
+            return await GetOneToDoList(listToDo.Id);
         }
 
         public async Task<bool> UpdateToDoList(int id, ToDoList listtodo)
@@ -100,5 +104,7 @@ namespace TODOLAB.Repositories
             return _context.ToDoList.Any(e => e.Id == id);
 
         }
+
+       
     }
 }
