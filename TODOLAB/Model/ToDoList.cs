@@ -16,5 +16,7 @@ namespace TODOLAB.Model
         public  string Assignee { get; set; }
 
         public int Rating  { get; set; }
+
+        public string CreatedByUserId { get; set; }
     }
 } 
