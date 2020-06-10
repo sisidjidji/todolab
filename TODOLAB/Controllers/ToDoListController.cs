@@ -50,5 +50,12 @@ namespace TODOLAB.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult<ToDoList>> DeleteList(int id)
+        {
+            return Ok(await toDoListRepository.DeleteToDoList(id));
+        }
     }
 }
