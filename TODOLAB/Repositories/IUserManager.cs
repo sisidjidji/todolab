@@ -7,7 +7,7 @@ using TODOLAB.Model;
 
 namespace TODOLAB.Repositories
 {
-    interface IUserManager
+   public  interface IUserManager
     {
         Task<ToDoUser> FindByNameAsync(string username);
         Task<bool> CheckPasswordAsync(ToDoUser user, string password);
