@@ -35,7 +35,26 @@ namespace TODOLAB.Repositories
 
         public string CreateToken(ToDoUser user)
         {
-            return userManager.Crea
+            var secret = configuration["JWT:Secret"];
+            var secretBytes = Encoding.UTF8.GetBytes(secret);
+            var signingKey = new SymmetricSecurityKey(secretBytes);
+
+            var tokenClaims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim("UserId", user.Id),
+                new Claim("FullName", $"{user.FirstName} {user.LastName}"),
+            };
+
+            var token = new JwtSecurityToken(
+                expires: DateTime.UtcNow.AddSeconds(10),
+                claims: tokenClaims,
+                signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
+                );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return tokenString;
         }
 
         public Task<ToDoUser> FindByIdAsync(string userId)
