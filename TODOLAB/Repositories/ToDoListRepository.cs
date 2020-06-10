@@ -29,7 +29,18 @@ namespace TODOLAB.Repositories
             return toDoList;
         }
 
-        public async Task<IActionResult> GetOneList( userId)  ;
+        public async Task<ToDoListDTO> GetOneList(int id)
+        {
+            var list = await  _context.ToDoList
+                .Select(e => new ToDoListDTO
+                {
+                    Id = e.Id,
+                    DueDate = e.DueDate,
+                    Name = e.Name
 
+                }).FirstOrDefaultAsync(list => list.Id == id);;
+
+            return list;
+        }
     }
 }
