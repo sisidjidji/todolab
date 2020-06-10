@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +44,11 @@ namespace TODOLAB
 
             });
 
-            
+            services.AddIdentity<ToDoUser, IdentityRole>()
+                .AddEntityFrameworkStores<UserToDoDbContext>()
+                ;
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
