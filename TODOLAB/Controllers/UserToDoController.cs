@@ -73,6 +73,23 @@ namespace TODOLAB.Controllers
                 
 
         }
+
+        [HttpGet("userId")]
+        public async Task<IActionResult>GetUser(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                UserId = user.Id,
+                user.Email,
+                user.FirstName,
+                user.LastName,
+                
+            });
+        }
            
     }
 }
