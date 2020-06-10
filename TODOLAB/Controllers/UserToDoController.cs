@@ -10,9 +10,6 @@ namespace TODOLAB.Controllers
     [ApiController]
     public class UserToDoController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+       
     }
 }
