@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TODOLAB.Model;
 using TODOLAB.Model.DTO;
 using TODOLAB.Repositories;
 
@@ -28,6 +29,26 @@ namespace TODOLAB.Controllers
         public async Task<ActionResult<ToDoListDTO>> GetOneList(int id)
         {
             return Ok(await toDoListRepository.GetOneToDoList(id));
+        }
+
+        [HttpPut ("{id}")]
+
+        public async Task<ActionResult<ToDoList>> PutList(int id, ToDoList listtodo)
+        {
+
+            if(id != listtodo.Id )
+            {
+                return BadRequest();
+            }
+
+            bool didUpdateList = await toDoListRepository.UpdateToDoList(id, listtodo);
+
+            if(!didUpdateList)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }
