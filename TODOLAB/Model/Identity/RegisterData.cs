@@ -19,7 +19,6 @@ namespace TODOLAB.Model.Identity
         [Required]
         public string LastName { get; set; }
 
-        [Required]
-        public DateTime? BirthDate { get; set; }
+       
     }
 }

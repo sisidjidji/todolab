@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TODOLAB.Data;
 
 namespace TODOLAB.Migrations.UserToDoDb
 {
     [DbContext(typeof(UserToDoDbContext))]
-    partial class UserToDoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200610030350_addSeeding")]
+    partial class addSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
