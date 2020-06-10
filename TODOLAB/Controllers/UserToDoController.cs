@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TODOLAB.Model;
 using TODOLAB.Model.Identity;
@@ -44,7 +47,7 @@ namespace TODOLAB.Controllers
 
         [HttpPost("Register")]
 
-        public async Task<IActionResult>Register(RegisterData register)
+        public async Task<IActionResult> Register(RegisterData register)
         {
             var user = new ToDoUser
             {
@@ -67,12 +70,39 @@ namespace TODOLAB.Controllers
 
             return Ok(new UserWithToken
             {
-                UserId =user.Id,
-                Token=userManager.CreateToken(user)
+                UserId = user.Id,
+                Token = userManager.CreateToken(user)
             });
-                
+
 
         }
+
+        [Authorize]
+        [HttpGet("Self")]
+        public async Task<IActionResult> Self()
+        {
+            if (HttpContext.User.Identity is ClaimsIdentity identity)
+            {
+                var usernameClaim = identity.FindFirst("UserId");
+                var userId = usernameClaim.Value;
+
+                var user = await userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+
+                return Ok(new
+                {
+                    UserId = user.Id,
+                    user.Email,
+                    user.FirstName,
+                    user.LastName
+
+                });
+            }
+            return Unauthorized();
+            }
 
         [HttpGet("{userId}")]
         public async Task<IActionResult>GetUser(string userId)
