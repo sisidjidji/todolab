@@ -37,6 +37,15 @@ namespace TODOLAB.Repositories
             return storeToReturn;
         }
 
+        public async Task<List<ToDoList>> GetAllPostsByMe(string userId)
+        {
+            
+                return await _context.ToDoList
+                    .Where(p => p.CreatedByUserId != null && p.CreatedByUserId == userId)
+                    .ToListAsync();
+            
+        }
+
         public async Task<IEnumerable<ToDoListDTO>> GetAllToDOList()
         {
             var toDoList = await _context.ToDoList

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TODOLAB.Model;
 using TODOLAB.Model.DTO;
@@ -14,11 +16,18 @@ namespace TODOLAB.Controllers
     public class ToDoListController : ControllerBase
     {
         IToDoListRepository toDoListRepository;
+        public object ClaimType { get; private set; }
         public ToDoListController(IToDoListRepository toDoListRepository)
         {
             this.toDoListRepository = toDoListRepository;
         }
 
+        [Authorize]
+        [HttpGet("Mine")]
+        public async Task<List<ToDoList>> GetMine()
+        {
+           return await toDoListRepository.GetAllPostsByMe(GetUserId());
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ToDoListDTO>>> GetToAllToDo()
         {
@@ -33,7 +42,7 @@ namespace TODOLAB.Controllers
 
         [HttpPut ("{id}")]
 
-        public async Task<ActionResult<ToDoList>> PutList(int id, ToDoList listtodo)
+        public async Task<ActionResult<ToDoList>> PutList(int id, [FromBody]ToDoList listtodo)
         {
 
             if(id != listtodo.Id )
@@ -59,12 +68,18 @@ namespace TODOLAB.Controllers
         }
 
         [HttpPost]
+        [Authorize]
 
-        public async  Task<ActionResult<ToDoListDTO>> SaveNewList(ToDoList listToDo)
+        public async  Task<ActionResult<ToDoListDTO>> SaveNewList([FromBody]ToDoList listToDo)
         {
             await toDoListRepository.SaveNewToDoList(listToDo);
 
             return CreatedAtAction("GetStore", new { id = listToDo.Id }, listToDo);
+        }
+
+        private string GetUserId()
+        {
+            return ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
         }
     }
 }
