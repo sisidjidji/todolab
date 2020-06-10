@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TODOLAB.Model.Identity
 {
-    public class Update_UserData
+    public class UpdateUserData
     {
         [Required]
 
