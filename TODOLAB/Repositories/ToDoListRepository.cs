@@ -38,28 +38,53 @@ namespace TODOLAB.Repositories
 
         public async Task<ToDoListDTO> GetOneToDoList(int id)
         {
-            var list = await  _context.ToDoList
+            var list = await _context.ToDoList
                 .Select(e => new ToDoListDTO
                 {
                     Id = e.Id,
                     DueDate = e.DueDate,
                     Name = e.Name
 
-                }).FirstOrDefaultAsync(list => list.Id == id);;
+                }).FirstOrDefaultAsync(list => list.Id == id); ;
 
             return list;
         }
 
-      
+
 
         public Task<ToDoListDTO> SaveNewToDoList(ToDoList list)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateToDoList(int id, ToDoList list)
+        public async Task<bool> UpdateToDoList(int id, ToDoList listtodo)
         {
-            throw new NotImplementedException();
+            _context.Entry(listtodo).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ListExists(id))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+
+        }
+        private bool ListExists(int id)
+        {
+            return _context.ToDoList.Any(e => e.Id == id);
+
         }
     }
 }
