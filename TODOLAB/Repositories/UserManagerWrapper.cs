@@ -30,12 +30,12 @@ namespace TODOLAB.Repositories
 
         public Task<IdentityResult> CreateAsync(ToDoUser user, string password)
         {
-            throw new NotImplementedException();
+            return userManager.CreateAsync(user, password);
         }
 
         public string CreateToken(ToDoUser user)
         {
-            throw new NotImplementedException();
+            return userManager.Crea
         }
 
         public Task<ToDoUser> FindByIdAsync(string userId)
