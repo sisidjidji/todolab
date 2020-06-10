@@ -48,6 +48,7 @@ namespace TODOLAB
                 .AddEntityFrameworkStores<UserToDoDbContext>()
                 ;
 
+            services.AddTransient<IUserManager, UserManagerWrapper>();
 
         }
 
