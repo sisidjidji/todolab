@@ -11,5 +11,7 @@ namespace TODOLAB.Model.DTO
         public string Name { get; set; }
 
         public DateTime? DueDate { get; set; }
+
+        public string CreatedBy { get; set; }
     }
 }
