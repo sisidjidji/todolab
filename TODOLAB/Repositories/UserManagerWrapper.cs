@@ -25,7 +25,7 @@ namespace TODOLAB.Repositories
 
         public Task<bool> CheckPasswordAsync(ToDoUser user, string password)
         {
-            throw new NotImplementedException();
+            return userManager.CheckPasswordAsync(user, password);
         }
 
         public Task<IdentityResult> CreateAsync(ToDoUser user, string password)
