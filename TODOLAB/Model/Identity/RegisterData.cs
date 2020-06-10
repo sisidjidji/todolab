@@ -14,7 +14,7 @@ namespace TODOLAB.Model.Identity
         [Required]
         public string Password { get; set; }
         [Required]
-        public string FirsttName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         public string LastName { get; set; }
