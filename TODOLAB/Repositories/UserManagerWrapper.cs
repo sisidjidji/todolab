@@ -63,17 +63,17 @@ namespace TODOLAB.Repositories
 
         public Task<ToDoUser> FindByIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            return userManager.FindByIdAsync(userId);
         }
 
         public Task<ToDoUser> FindByNameAsync(string username)
         {
-            throw new NotImplementedException();
+            return userManager.FindByNameAsync(username);
         }
 
         public Task<IdentityResult> UpdateAsync(ToDoUser user)
         {
-            throw new NotImplementedException();
+            return userManager.UpdateAsync(user);
         }
     }
 }

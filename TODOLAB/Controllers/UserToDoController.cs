@@ -56,7 +56,7 @@ namespace TODOLAB.Controllers
             };
 
             var result = await userManager.CreateAsync(user, register.Password);
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
                 return BadRequest(new
                 {
@@ -74,7 +74,7 @@ namespace TODOLAB.Controllers
 
         }
 
-        [HttpGet("userId")]
+        [HttpGet("{userId}")]
         public async Task<IActionResult>GetUser(string userId)
         {
             var user = await userManager.FindByIdAsync(userId);
