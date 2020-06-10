@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TODOLAB.Model;
 
 namespace TODOLAB.Data
 {
-    public class UserToDoDbContext :DbContext
+    public class UserToDoDbContext :IdentityDbContext<ToDoUser>
     {
         public UserToDoDbContext(DbContextOptions <UserToDoDbContext> options) : base(options)
         {
