@@ -10,5 +10,8 @@ namespace TODOLAB.Repositories
     {
         public Task<IEnumerable<ToDoListDTO>> GetAllToDOList();
         public Task<ToDoListDTO> GetOneToDoList(int id);
+        Task<bool> UpdateToDoList(int id, ToDoListDTO list);
+        Task<ToDoListDTO> SaveNewToDoList(ToDoListDTO list);
+        Task<ToDoListDTO> DeleteToDoList(int id);
     }
 }
