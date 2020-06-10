@@ -62,7 +62,9 @@ namespace TODOLAB.Controllers
 
         public async  Task<ActionResult<ToDoListDTO>> SaveNewList(ToDoList listToDo)
         {
-            
+            await toDoListRepository.SaveNewToDoList(listToDo);
+
+            return CreatedAtAction("GetStore", new { id = listToDo.Id }, listToDo);
         }
     }
 }
