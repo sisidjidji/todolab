@@ -69,9 +69,10 @@ namespace TODOLAB.Controllers
 
         [HttpPost]
         [Authorize]
-
         public async  Task<ActionResult<ToDoListDTO>> SaveNewList([FromBody]ToDoList listToDo)
         {
+            listToDo.CreatedByUserId = GetUserId();
+
             await toDoListRepository.SaveNewToDoList(listToDo);
 
             return CreatedAtAction("GetStore", new { id = listToDo.Id }, listToDo);
