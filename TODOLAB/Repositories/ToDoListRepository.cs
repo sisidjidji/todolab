@@ -18,9 +18,23 @@ namespace TODOLAB.Repositories
             _context = context;
         }
 
-        public Task<ToDoListDTO> DeleteToDoList(int id)
+        public async Task<ToDoListDTO> DeleteToDoList(int id)
         {
-            throw new NotImplementedException();
+            var listToDo = await _context.ToDoList.FindAsync(id);
+
+            if (listToDo == null)
+            {
+                return null;
+            }
+
+            var storeToReturn = await GetOneToDoList(id);
+
+            _context.ToDoList.Remove(listToDo);
+
+
+            await _context.SaveChangesAsync();
+
+            return storeToReturn;
         }
 
         public async Task<IEnumerable<ToDoListDTO>> GetAllToDOList()
