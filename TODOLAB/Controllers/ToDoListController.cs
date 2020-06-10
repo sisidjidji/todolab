@@ -24,5 +24,10 @@ namespace TODOLAB.Controllers
             return Ok(await toDoListRepository.GetAllToDOList());
 
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ToDoListDTO>> GetOneList(int id)
+        {
+            return Ok(await toDoListRepository.GetOneToDoList(id));
+        }
     }
 }

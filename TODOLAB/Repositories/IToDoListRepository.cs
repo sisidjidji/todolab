@@ -9,5 +9,6 @@ namespace TODOLAB.Repositories
     public interface IToDoListRepository
     {
         public Task<IEnumerable<ToDoListDTO>> GetAllToDOList();
+        public Task<ToDoListDTO> GetOneToDoList(int id);
     }
 }

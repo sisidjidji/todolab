@@ -29,5 +29,7 @@ namespace TODOLAB.Repositories
             return toDoList;
         }
 
+        public async Task<IActionResult> GetOneList( userId)  ;
+
     }
 }
